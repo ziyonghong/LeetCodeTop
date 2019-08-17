@@ -1,0 +1,38 @@
+/*
+242. Valid Anagram
+Given two strings s and t , write a function to determine if t is an anagram of s.
+
+Example 1:
+
+Input: s = "anagram", t = "nagaram"
+Output: true
+Example 2:
+
+Input: s = "rat", t = "car"
+Output: false
+
+原题链接：https://leetcode.com/problems/valid-anagram/
+*/
+
+//解决思路：用HashMap，但只有26个字母，所以可以简化用一个数组存储，记录每个字母出现的次数
+
+
+//代码
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        int[] temp=new int [26];
+        char [] ArrS=s.toCharArray();
+        for(char i :ArrS){
+            temp[i-'a']++;
+        }
+        char []ArrT=t.toCharArray();
+        for(char i:ArrT){
+            temp[i-'a']--;
+        }
+        for(int i:temp){  //此处i是取得temp数组中的元素，而不是下标
+            if(temp[i]!=0)
+                return false;
+        }
+        return true;
+    }
+}

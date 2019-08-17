@@ -1,0 +1,38 @@
+/*
+206. Reverse Linked List
+Reverse a singly linked list.
+
+Example:
+
+Input: 1->2->3->4->5->NULL
+Output: 5->4->3->2->1->NULL
+
+原题链接：https://leetcode.com/problems/reverse-linked-list/
+*/
+
+//解决思路：链表反转，画出图，来找规律
+
+
+//代码
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode reverseList(ListNode head) {
+         if(head==null||head.next==null)
+               return head;
+        ListNode p=head,q=p.next;
+        while(p.next!=null){
+            q=p.next;
+            p.next=q.next;
+            q.next=head;
+            head=q;
+        }
+        return head;
+    }
+}
