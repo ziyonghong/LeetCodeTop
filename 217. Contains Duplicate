@@ -1,0 +1,29 @@
+/*
+217. Contains Duplicate
+Given an array of integers, find if the array contains any duplicates.
+
+Your function should return true if any value appears at least twice in the array, and it should return false if every element is distinct.
+
+Example 1:
+
+Input: [1,2,3,1]
+Output: true
+原题链接：https://leetcode.com/problems/contains-duplicate/
+*/
+
+//解决思路：先排序再比较相邻的是否有相等 
+          //用hashSet，不允许有重复的值
+
+
+//代码
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+         Arrays.sort(nums);
+        for (int i = 0; i < nums.length-1; i++) {
+			if(nums[i]==nums[i+1])
+				return true;
+			
+		}
+        return false;
+    }
+}
