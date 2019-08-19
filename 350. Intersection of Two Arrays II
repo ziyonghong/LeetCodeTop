@@ -1,0 +1,41 @@
+/*
+350. Intersection of Two Arrays II
+Given two arrays, write a function to compute their intersection.
+
+Example 1:
+
+Input: nums1 = [1,2,2,1], nums2 = [2,2]
+Output: [2,2]
+原题链接：https://leetcode.com/problems/intersection-of-two-arrays-ii/
+*/
+
+//解决思路：hashMap   //先排序后用两个指针比较
+
+
+//代码
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        if(nums1==null||nums2==null||nums1.length==0||nums2.length==0) return new int[0];
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        int i=0,j=0;
+        List<Integer> list=new ArrayList<>();
+        while(i<nums1.length&&j<nums2.length){
+            if(nums1[i]<nums2[j]){
+                i++;
+            }else if(nums1[i]>nums2[j]){
+                j++;
+            }else{
+                list.add(nums1[i]);
+                i++;
+                j++;
+            }
+        }
+         i=0;
+        int[] res=new int[list.size()];
+        for(int num:list){
+            res[i++]=num;
+        }
+        return res;
+    }
+}
