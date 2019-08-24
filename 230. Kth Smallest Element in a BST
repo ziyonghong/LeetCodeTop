@@ -1,0 +1,52 @@
+/*
+230. Kth Smallest Element in a BST
+Given a binary search tree, write a function kthSmallest to find the kth smallest element in it.
+
+Note: 
+You may assume k is always valid, 1 ≤ k ≤ BST's total elements.
+
+Example 1:
+
+Input: root = [3,1,4,null,2], k = 1
+   3
+  / \
+ 1   4
+  \
+   2
+Output: 1
+原题链接：https://leetcode.com/problems/kth-smallest-element-in-a-bst/
+*/
+
+//解决思路：树的中序遍历即有序
+
+
+//代码
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    int count=0;
+    int val;
+    public int kthSmallest(TreeNode root, int k) {
+        inorder(root,k);
+        return val;
+        
+    }
+        public boolean inorder(TreeNode root, int k){
+            if(root!=null){
+                if(inorder(root.left,k)) return true;
+                if(++count==k){
+                    val=root.val;
+                    return true;
+                }
+                if(inorder(root.right,k)) return true;
+            }
+            return false;
+        }
+}
