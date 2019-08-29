@@ -1,0 +1,28 @@
+/*
+287. Find the Duplicate Number
+Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive), prove that at least one duplicate number must exist. Assume that there is only one duplicate number, find the duplicate one.
+
+Example 1:
+
+Input: [1,3,4,2,2]
+Output: 2
+原题链接：https://leetcode.com/problems/find-the-duplicate-number/
+*/
+
+//解决思路：用hashSet，不允许有重复的值
+
+
+//代码
+class Solution {
+    public int findDuplicate(int[] nums) {
+        int val=0;
+        HashSet<Integer> hs=new HashSet<Integer>();
+        for(int i=0;i<=nums.length-1;i++){
+            if(hs.contains(nums[i])){
+                val=nums[i];
+        }
+        hs.add(nums[i]);
+        }
+        return val;
+}
+}
