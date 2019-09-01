@@ -1,0 +1,53 @@
+/*
+94. Binary Tree Inorder Traversal
+Write a program that outputs the string representation of numbers from 1 to n.
+Given a binary tree, return the inorder traversal of its nodes' values.
+
+Example:
+
+Input: [1,null,2,3]
+   1
+    \
+     2
+    /
+   3
+
+Output: [1,3,2]
+
+原题链接：https://leetcode.com/problems/binary-tree-inorder-traversal/
+*/
+
+//解决思路：递归中序遍历
+
+
+//代码
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public List<Integer> list = new ArrayList<Integer>();
+    public List<Integer> inorderTraversal(TreeNode root) {
+        inOrder(root);
+        return list;
+    }
+ public void inOrder(TreeNode node) {
+        if (node == null) {
+            return;
+        }
+        if (node.left != null) {
+            inOrder(node.left);
+        }
+		//node.left不为空时，将node加入队列中
+        list.add(node.val);
+        if (node.right != null) {
+            inOrder(node.right);
+        }
+    }
+    
+}
