@@ -1,0 +1,51 @@
+/*
+69. Sqrt(x)
+Implement int sqrt(int x).
+
+Compute and return the square root of x, where x is guaranteed to be a non-negative integer.
+
+Since the return type is an integer, the decimal digits are truncated and only the integer part of the result is returned.
+
+Example 1:
+
+Input: 4
+Output: 2
+Example 2:
+
+Input: 8
+Output: 2
+Explanation: The square root of 8 is 2.82842..., and since 
+             the decimal part is truncated, 2 is returned.
+原题链接：https://leetcode.com/problems/sqrtx/
+*/
+
+//解决思路：二分查找
+
+
+//代码
+class Solution {
+    public int mySqrt(int x) {        
+        
+        if (x == 0 || x == 1) return x;
+        
+        // Binary Search
+        int left = 0, right = x;
+        while (left < right) {
+            // mid = (left + right) / 2 can overflow if right > Integer.MAX_VALUE - left
+            int mid = left + (right - left) / 2;
+            
+            // same thing here , mid * mid > x can overflow. replace by mid > x / mid
+            if (mid > x / mid) {
+                right = mid - 1; 
+            } else {
+                left = mid + 1;
+                // if mid * mid < x but (mid + 1) * (mid + 1) > x then mid was the right answer
+                if (left > x / left) {
+                    return mid;
+                }                
+            }
+        }
+        
+        return left;
+    }
+}
