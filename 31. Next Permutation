@@ -1,0 +1,22 @@
+class Solution {
+    public void nextPermutation(int[] nums) {
+        if(nums==null||nums.length==0) return;
+        int replace=nums.length-2;
+        while(replace>=0){
+            if(nums[replace]<nums[replace+1]) break;
+            replace--;
+        }
+        if(replace<0){
+            Arrays.sort(nums);
+            return;
+        }
+        int idx=replace+1;
+        while(idx<nums.length && nums[idx]>nums[replace]){
+            idx++;
+        }
+        int tmp=nums[replace];
+        nums[replace]=nums[idx-1];
+        nums[idx-1]=tmp;
+        Arrays.sort(nums,replace+1,nums.length);
+    }
+}
