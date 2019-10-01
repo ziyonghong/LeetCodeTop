@@ -1,0 +1,18 @@
+class Solution {
+    public int minPathSum(int[][] grid) {
+        if (grid == null || grid.length == 0) return 0;
+        Integer[][] cache = new Integer[grid.length][grid[0].length];
+        return getPathSumRecursively(grid, 0, 0, cache);
+    }
+    
+    private int getPathSumRecursively(int[][] grid, int col, int row, Integer[][] cache) {
+        if (col > grid[0].length - 1 || row > grid.length - 1) return Integer.MAX_VALUE;
+        if (cache[row][col] != null) return cache[row][col];
+        
+        int min = Math.min(getPathSumRecursively(grid, col, row + 1, cache), 
+                       getPathSumRecursively(grid, col + 1, row, cache));
+        int sum = grid[row][col] + (min == Integer.MAX_VALUE ? 0 : min);
+        
+        cache[row][col] = sum;
+        return sum;
+    }
