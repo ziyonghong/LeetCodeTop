@@ -1,0 +1,44 @@
+class Solution {
+    public int longestConsecutive(int[] nums) {
+        if(nums==null||nums.length==0) return 0;
+        //key是nums数组的值，value对应的是每一个nums[i]处连续的序列的个数
+        Map<Integer,Integer> param=new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+            if(!param.containsKey(nums[i])){//hashMap中没有该元素的时候
+                param.put(nums[i],1); //初始化认为与该元素相邻的只有一个
+                int temp=nums[i];  //temp用来保存比该元素大的且连续的最大的那个元素
+                boolean flag=false; //用来判断是否有既有与该元素大的相邻元素，又有比该元素小的相邻元素
+                if(param.containsKey(temp+1)){
+                    while(param.containsKey(temp+1)){
+                    temp++;
+                        }
+                    param.put(temp,param.get(temp)+1); //更新最大的那个元素的value,即连续序列的个数
+                    param.put(nums[i],param.get(temp));//更新当前元素的value,保证一个连续序列的最前和最后一个元素的value值相同
+                    flag=true;
+                }
+                int temp2=nums[i];//用来保存比当前元素小且连续的那个数
+                int count=0;
+                if(param.containsKey(temp2-1)){//如果存在比当前元素小且连续的元素key
+                 while(param.containsKey(temp2-1)){
+                     temp2--;
+                     count++;
+                 }
+                   if(flag){//即存在比当前元素大的key又存在比当前元素小的key
+                       param.put(temp,param.get(temp)+count);//更新新的连续序列的首尾
+                       param.put(temp2,param.get(temp));
+                   }else {        //只存在比当前元素小的且相邻的元素序列，不存在 比当前元素大且相邻的元素key 
+						param.put(temp2, param.get(temp2)+1);    //更新新的连续序列的首尾
+						param.put(nums[i], param.get(temp2));
+					}
+                }
+            }
+        }
+            int max=Integer.MIN_VALUE;      //用来保存最长连续序列有多少元素
+		for(Integer key:param.keySet()) {
+			if(max<param.get(key)) {
+				max=param.get(key);
+			}
+		}
+		return max;
+    }
+}
