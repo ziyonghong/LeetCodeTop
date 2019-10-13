@@ -1,0 +1,63 @@
+class Solution {
+        /*
+	65% in time and 100% in memory.
+	
+    This is actually a solution for N Sum.
+
+    DP solution: Sort the array first. Recursion down to the twoSum level and 
+	get all solutions for every specific threeSum (scanning array from left to right).
+	
+	For example, if you want all answers for threeSum, you need to know all twoSum answers for each condition.
+	Let's assume [n1, n2, n3] is one answer for the threeSum problem. 
+	One condition (starting condition) could be n1 = nums[0], 
+	then [n2, n3] will only be picked from index 1 to length-1. 
+	Then the next condition is n1 = nums[1], then all [n2, n3] solutions are from index 2 to length-1.
+	
+    Once you sovle all threeSum problem, then recursion back to do the same thing for fourSum, etc...
+     */
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        // We want the answer of N Sum
+        int N = 4;
+
+        // Filter out all impossible inputs
+        if (nums.length < N) return new ArrayList<>();
+
+        Arrays.sort(nums);
+        List<List<Integer>> ans = new ArrayList<>();
+        nSum(nums, target, 0, ans, N);
+        return ans;
+    }
+    private void nSum(int[] nums, int target, int leftIndex, List<List<Integer>> ans, int n) {
+        if (n > 2) {
+            for (int i = leftIndex; i < nums.length-n+1; i++) {
+				// A bit performance improvement.
+                // Just skip the iteration if the integer is same as the previous array item.
+                if (i > leftIndex && nums[i] == nums[i-1]) continue;
+				
+                nSum(nums, target-nums[i], i+1, ans, n-1);
+                for (List<Integer> lst : ans) if (lst.size() == n-1) lst.add(nums[i]);
+            }
+        } else _easyTwoSum(nums, target, leftIndex, ans);
+    }
+    private void _easyTwoSum(int[] nums, int target, int l, List<List<Integer>> ans) {
+        int r = nums.length-1;
+        int ol = l, or = r;
+		
+		// Moving two markers from two ends inwards until they meet.
+        while (l < r) {
+            if (nums[l] + nums[r] == target) {
+                ans.add(new ArrayList<>(Arrays.asList(nums[l], nums[r])));
+                l++;
+                r--;
+            } else {
+                if (nums[l] + nums[r] > target) r--;
+                else l++;
+            }
+			
+			// A bit performance gain.
+			// Skip the iterations that have duplicated values in the array.
+            while (l > ol && nums[l] == nums[l-1] && l < r) l++;
+            while (r < or && nums[r] == nums[r+1] && l < r) r--;
+        }
+    }
+}
