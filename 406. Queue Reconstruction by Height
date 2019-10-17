@@ -1,0 +1,8 @@
+class Solution {
+    public int[][] reconstructQueue(int[][] people) {
+        Arrays.sort(people,(person1,person2)->person1[0]!=person2[0]?person2[0]-person1[0]:person1[1]-person2[1]);
+        List<int[]> res=new LinkedList<>();
+        for(int[] p:people) res.add(p[1],p);
+        return res.toArray(people);
+    }
+}
