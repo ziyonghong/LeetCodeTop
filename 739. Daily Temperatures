@@ -1,0 +1,25 @@
+class Solutio{
+    public int[] dailyTemperatures(int[] T) {
+        if(T.length==0||T==null) {
+		return new int [0];
+	}
+	int[] stack=new int[T.length];
+	int[] res=new int[T.length];
+	int top=-1;
+	stack[++top]=0;
+	for(int i=1;i<T.length;i++) {
+		if(T[i]>=T[stack[top]]) {
+			while(T[i]>T[stack[top]]&&top>=0) {
+				res[stack[top]]=i-stack[top];
+				top--;
+				if(top==-1)
+					break;
+			}
+			stack[++top]=i;
+		}else{
+			stack[++top]=i;
+		}
+	}
+	return res;
+    }
+}
