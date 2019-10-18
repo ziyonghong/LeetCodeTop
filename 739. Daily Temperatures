@@ -1,4 +1,6 @@
 class Solutio{
+
+//递减栈
     public int[] dailyTemperatures(int[] T) {
         if(T.length==0||T==null) {
 		return new int [0];
