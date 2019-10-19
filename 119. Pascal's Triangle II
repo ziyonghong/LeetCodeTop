@@ -1,0 +1,21 @@
+class Solution {
+    public List<Integer> getRow(int rowIndex) {
+         List<Integer> previous = new ArrayList<Integer>();      
+        previous.add(1);
+        if(rowIndex == 0){
+            return previous;
+        }
+        
+        for(int i =1;i<=rowIndex;i++){
+            List<Integer> results = new ArrayList<Integer>();
+            results.add(1);
+            for(int j =1;j<i;j++){
+                int sum = previous.get(j-1)+ previous.get(j);
+                results.add(sum);
+            }
+            results.add(1);
+            previous = results;
+        }
+        return previous;
+    }
+}
