@@ -13,8 +13,6 @@ For example, this binary tree [1,2,2,3,4,4,3] is symmetric:
 */
 
 //解决思路：递归
-
-
 //代码
 /**
  * Definition for a binary tree node.
