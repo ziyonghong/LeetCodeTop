@@ -1,0 +1,17 @@
+//递归
+
+class Solution {
+    int res=0;
+    public int findTargetSumWays(int[] nums, int s) {
+        helper(nums,s,0);
+        return res;
+    }
+    void helper(int[] nums,int s,int start){
+        if(start>=nums.length){
+            if(s==0)++res;
+            return;
+        }
+        helper(nums,s-nums[start],start+1);
+        helper(nums,s+nums[start],start+1);
+    }
+}
