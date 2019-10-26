@@ -1,0 +1,31 @@
+class Solution {
+    public int maxSumSubmatrix(int[][] matrix, int k) {
+        if(matrix.length == 0) return 0;
+	        
+	        int rows = matrix.length, cols = matrix[0].length;
+	        int result = Integer.MIN_VALUE;
+	        
+	        for(int left = 0; left < cols; left++){
+	            int[] sums = new int[rows];
+	            for(int right = left; right < cols; right++){
+	                for(int i = 0; i < rows; i++){
+	                    sums[i] += matrix[i][right];
+	                }
+	                
+	                TreeSet<Integer> set = new TreeSet<Integer>();
+	                set.add(0);
+	                int currSum = 0;
+	                
+	                for(int sum : sums){
+	                    currSum += sum;
+	                    int gap = currSum - k;
+						Integer minimumGap = set.ceiling(gap);
+	                    if(minimumGap != null) result = Math.max(result, currSum - minimumGap);
+	                    set.add(currSum);
+	                }
+	            }
+	        }
+	        
+	        return result;
+    }
+}
