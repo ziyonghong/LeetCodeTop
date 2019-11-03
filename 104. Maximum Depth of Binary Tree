@@ -21,8 +21,6 @@ return its depth = 3.
 */
 
 //解决思路：1.先排序再查找 2.用hashMap存储 3.性质a^a=1
-
-
 //代码
 /**
  * Definition for a binary tree node.
