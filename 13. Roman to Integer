@@ -18,7 +18,6 @@ Output: 3
 
 //解决思路：用case语句列出各字母的数值。比较当前字母与后一个字母的大小，若小于则说明应该减去该值。
 
-
 //代码
 class Solution {
     public int romanToInt(String s) {
