@@ -10,8 +10,7 @@ L             50
 C             100
 D             500
 M             1000
-Example 1:
-
+Example 1
 Input: "III"
 Output: 3
 
@@ -49,6 +48,5 @@ class Solution {
                 case 'M':return 1000;
             }
             return 0;
-        }
-    
+        }   
 }
