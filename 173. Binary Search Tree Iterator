@@ -8,7 +8,6 @@
  * }
  */
 class BSTIterator {
-
    private Stack<TreeNode> stack;
 public BSTIterator(TreeNode root) {
     stack = new Stack<>();
@@ -31,8 +30,7 @@ public int next() {
     TreeNode node = stack.pop();
     pushLeft(node.right);
     return node.val;
-}
-    
+  }    
 }
 /**
  * Your BSTIterator object will be instantiated and called as such:
