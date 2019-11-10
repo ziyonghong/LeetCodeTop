@@ -13,12 +13,10 @@ public BSTIterator(TreeNode root) {
     stack = new Stack<>();
     pushLeft(root);
 }
-
 /** @return whether we have a next smallest number */
 public boolean hasNext() {
     return !stack.isEmpty();
 }
-
 private void pushLeft(TreeNode node) {
     while (node != null) {
         stack.push(node);
