@@ -1,0 +1,17 @@
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+         //pointers for both strings
+    int sp = 0, tp = 0;
+    //while there are chars in both strings
+    while (sp < s.length() && tp < t.length()) {
+      //compare chars, increment pointer for t in all cases
+      if (s.charAt(sp) == t.charAt(tp++)) {
+        //increment pointer for s in case there is match
+        sp++;
+      }
+    }
+    //only if we scanned all s chars we return true - meaning all chars
+    //from s has been met
+    return sp == s.length();
+    }
+}

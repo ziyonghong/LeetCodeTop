@@ -1,0 +1,28 @@
+class Solution {
+    public List<Integer> grayCode(int n) {
+        List<Integer> list=new LinkedList<>();
+        if(n==0){
+            list.add(0);
+            return list;
+        }
+        list.add(0);list.add(1);
+        helper(list,n);
+        return list;
+    }
+    
+    private void helper(List<Integer> list,int n){
+        int count=1;
+        while(count<n){
+            List<Integer> tmpList = new LinkedList<>(list);
+            list.clear();
+            for(int i=0;i<tmpList.size();i++){//顺序加入 add in order
+                list.add(tmpList.get(i));
+            }
+            
+            for(int i=tmpList.size()-1;i>=0;i--){//逆序加入 add in reversed order
+                list.add((1<<count)+tmpList.get(i));
+            }
+            count++;
+        }
+    }
+}

@@ -1,0 +1,9 @@
+class Solution {
+    public boolean canJump(int[] nums) {
+        int maxRight=0;
+        for(int i=0;i<nums.length;i++)
+            if(i<=maxRight)
+                maxRight = Math.max(maxRight,nums[i]+i);
+        return maxRight>=nums.length-1;
+    }
+}

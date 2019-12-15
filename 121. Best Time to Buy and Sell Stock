@@ -16,8 +16,6 @@ Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-
 */
 
 //解决思路：只能购买一次，所以不适合用贪心，用动态规划。
-
-
 //代码
 /**
  * Definition for singly-linked list.

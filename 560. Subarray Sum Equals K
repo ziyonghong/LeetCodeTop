@@ -1,0 +1,36 @@
+class Solution {
+    public int subarraySum(int[] nums, int target) {
+         // nums - > 1         2          3           4           5
+        // sum ->0  1         3          6           10          15
+        int n = nums.length;
+        if(n == 0)return 0;
+        
+        if(n== 1){
+            if(nums[0] == target)return 1;
+            else return 0;
+        }
+		
+		//Generate the sum array
+        int sum[] = new int[nums.length+1];
+        
+        int temp=0;
+        for(int i=1;i<sum.length;i++){
+            temp+=nums[i-1];
+            sum[i] = temp;
+        }
+        int count = 0;
+        
+        //for(int i=0;i<sum.length;i++)
+        //    System.out.print(sum[i]+" ");
+        
+        for(int j=sum.length-1;j>0;j--){
+            for(int k=1;k<=j;k++){
+                if(sum[j]-sum[k-1] == target){
+                    count++;
+                }
+            }
+        }
+        
+        return count;
+    }
+}

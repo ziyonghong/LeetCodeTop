@@ -1,0 +1,23 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+
+//DFS思想找到最左子节点，然后回到其父节点。把其父节点和右子节点断开，将原左子节点连上父节点的右子节点上，再将原右子节点连到新右子节点上
+class Solution {
+    public void flatten(TreeNode root) {
+        if(root==null) return;
+        if(root.left!=null) flatten(root.left);
+        if(root.right!=null) flatten(root.right);
+        TreeNode tmp=root.right;
+        root.right=root.left;
+        root.left=null;
+        while(root.right!=null) root=root.right;
+        root.right=tmp;
+    }
+}

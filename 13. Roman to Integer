@@ -1,7 +1,6 @@
 /*
 13. Roman to Integer
-Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
-
+Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M
 Symbol       Value
 I             1
 V             5
@@ -10,8 +9,7 @@ L             50
 C             100
 D             500
 M             1000
-Example 1:
-
+Example 1
 Input: "III"
 Output: 3
 
@@ -19,7 +17,6 @@ Output: 3
 */
 
 //解决思路：用case语句列出各字母的数值。比较当前字母与后一个字母的大小，若小于则说明应该减去该值。
-
 
 //代码
 class Solution {
@@ -49,6 +46,5 @@ class Solution {
                 case 'M':return 1000;
             }
             return 0;
-        }
-    
+        }   
 }

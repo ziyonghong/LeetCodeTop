@@ -1,0 +1,26 @@
+class Solution {
+    public int thirdMax(int[] nums) {
+         //sort nums
+        Arrays.sort(nums);
+        //arraylist to store all unique number
+        List list  = new ArrayList<>();
+        
+        //if nums[i-1] != nums[i] we add that number to arraylist.
+        for(int i = 0; i < nums.length; i++){
+            if( i == 0 || nums[i - 1] != nums[i]){
+                list.add(nums[i]);
+            }
+        }
+        
+        //convert arraylist to array
+        int[] arr = new int[list.size()];
+        for(int j = 0; j < list.size(); j++){
+            arr[j] = (int)list.get(j);
+        }
+        
+        if(arr.length < 3){
+            return arr[arr.length - 1];
+        }
+        return arr[arr.length - 3];
+    }
+}

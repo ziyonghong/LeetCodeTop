@@ -1,0 +1,34 @@
+class Solution 
+{
+    public boolean canPlaceFlowers(int[] flowerbed, int n) 
+    {
+        int count = 0; // count the valid empty spot
+        
+        for(int i=0; i<flowerbed.length; i++)
+        {
+
+            if(flowerbed[i] == 0) // if find empty spot, check its adjacent spots
+            {
+                if(i-1 >= 0 && flowerbed[i-1] == 1) // check left adjacent spot
+                    continue;
+                if(i+1 < flowerbed.length && flowerbed[i+1] == 1) // check right adjacent spot
+                    continue;
+                
+                // if come here, meaning this 0 is valid spot to place flower
+                count++;
+                i++; // skip next 0
+            }
+            else if(flowerbed[i] == 1) // if find a flower spot, its next spot is not valid, skip it
+            {
+                i++;
+            }
+            
+            
+            if(count >= n) // if there are enough spots to place flower, no need to continue
+                return true;
+            
+        }
+        
+        return false;
+    }
+}

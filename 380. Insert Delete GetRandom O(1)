@@ -1,0 +1,49 @@
+class RandomizedSet {
+
+   //improved by other's
+    //use hashset and arraylist inorder to directly find the random int in O(1)
+    Set<Integer> s;
+    List<Integer> ls;
+    Random rd;
+
+    /** Initialize your data structure here. */
+    public RandomizedSet() {
+        s = new HashSet<>();
+        rd = new Random();
+        ls = new ArrayList<>();
+    }
+    
+    /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
+    public boolean insert(int val) {
+        if(s.contains(val)) return false;
+        else{
+            s.add(val);
+            ls.add(val);
+            return true;
+        }
+    }
+    
+    /** Removes a value from the set. Returns true if the set contained the specified element. */
+    public boolean remove(int val) {
+        if(s.contains(val)){
+            s.remove(val);
+            ls.remove(Integer.valueOf(val));
+           return true; 
+        } 
+        else return false;
+    }
+
+    /** Get a random element from the set. */
+    public int getRandom() {
+        //find the int
+        return ls.get(rd.nextInt(s.size()));//list can directly find the number with idx==0 to idx == s.size()-1
+    }
+}
+
+/**
+ * Your RandomizedSet object will be instantiated and called as such:
+ * RandomizedSet obj = new RandomizedSet();
+ * boolean param_1 = obj.insert(val);
+ * boolean param_2 = obj.remove(val);
+ * int param_3 = obj.getRandom();
+ */
