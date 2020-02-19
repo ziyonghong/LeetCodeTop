@@ -1,0 +1,38 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode reverseKGroup(ListNode head, int k) {
+        if(head==null||k==1) return head;
+        ListNode dummy=new ListNode(-1); //记录头节点
+        ListNode pre=dummy;
+        ListNode cur=head;
+        dummy.next=head;
+        for(int i=1;cur!=null;i++){
+            if(i%k==0){
+                pre=reverseOneGroup(pre,cur.next);
+                cur=pre.next;
+            }else{
+                cur=cur.next;
+            }
+        }
+        return dummy.next;
+        
+    }
+   public  ListNode reverseOneGroup(ListNode pre,ListNode next){
+       ListNode last=pre.next;
+       ListNode cur=last.next;
+       while(cur!=next){
+           last.next=cur.next;
+           cur.next=pre.next;
+           pre.next=cur;
+           cur=last.next;
+       }
+       return last;
+   }
+}
