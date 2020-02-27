@@ -1,0 +1,28 @@
+class Solution {
+//桶排序
+    public List<String> topKFrequent(String[] words, int k) {
+        //统计元素的频率
+        List<String> res=new ArrayList<>();
+        Map<String,Integer> freq=new HashMap<>();
+        for(String word:words){
+            freq.put(word,freq.getOrDefault(word,0)+1);
+        }
+        
+        List<String>[] bucket=new List[words.length+1];
+        for(String word:freq.keySet()){
+            int frequency=freq.get(word);
+            if(bucket[frequency]==null){
+                bucket[frequency]=new ArrayList<>();
+            }
+            bucket[frequency].add(word);
+        }
+        
+
+        for(int i=bucket.length-1;i>=0&&res.size()<k;i--){
+            if(bucket[i]!=null){
+                res.addAll(bucket[i]);
+            }
+        }
+        return res;
+    }
+}
