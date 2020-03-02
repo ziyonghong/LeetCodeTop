@@ -1,0 +1,36 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+//最小堆，把k个链表的首元素都加入最小堆中，它们会自动排好序。然后每次取出堆中最小的元素加入最终结果链表中，
+//再把取出元素的下一个元素加入堆中。做重复操作
+class Solution {
+    class NodeComp implements Comparator<ListNode>{
+        public int compare(ListNode a,ListNode b){
+            return a.val-b.val;
+        }
+    }
+    public ListNode mergeKLists(ListNode[] lists) {
+        ListNode dummy=new ListNode(0);
+        if(lists==null||lists.length==0) return dummy.next;
+        int size=lists.length;
+        ListNode curr=dummy;
+        NodeComp cmp=new NodeComp();
+        PriorityQueue<ListNode> pqueue=new PriorityQueue(cmp);
+        for(int i=0;i<size;i++){
+            if(lists[i]!=null)
+                pqueue.add(lists[i]);
+        }
+        while(pqueue.size()!=0){
+            ListNode node=pqueue.poll();
+            curr.next=node;
+            curr=curr.next;
+            if(node.next!=null) pqueue.add(node.next);
+        }
+        return dummy.next;
+    }
+}
